@@ -1,14 +1,14 @@
 <header class="header">
   <div class="container">
     <div class="header-left">
-      <a href="#" class="logo">
+      <a routerLink="/" class="logo">
         <img src="assets/images/logo.png" alt="logo">
       </a>
       <div class="header-menu">
         <nav>
           <ul>
             <li>
-              <a routerLink="/">Услуги</a>
+              <a routerLink="/" class="active">Услуги</a>
             </li>
             <li>
               <a routerLink="/">О нас</a>
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="header-right">
-      <div class="phone" href="tel:+74993431334">+7 (499) 343-13-34</div>
+      <a class="phone" href="tel:+74993431334">+7 (499) 343-13-34</a>
       <div class="header-actions">
         <a *ngIf="!isLogged" routerLink="/login">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

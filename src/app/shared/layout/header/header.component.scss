@@ -23,21 +23,19 @@ header.header {
           padding: 0;
           margin: 0;
           list-style: none;
-          //align-items: center;
-          //justify-content: space-between;
 
           li {
             list-style: none;
-
-            &.active {
-              color: #709fdc;
-            }
 
             a {
               font-size: 16px;
               color: $dark-blue-text-color;
               cursor: pointer;
               text-decoration: none;
+
+              &.active {
+                color: #709fdc;
+              }
             }
           }
         }
@@ -53,6 +51,7 @@ header.header {
         font-size: 16px;
         line-height: 130%;
         color: #709fdc;
+        text-decoration: none;
       }
 
       .header-actions {
