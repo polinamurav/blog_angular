@@ -1,0 +1,75 @@
+@import "../../../../assets/styles/variables";
+
+header.header {
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Monsterrat", sans-serif;
+    font-weight: 500;
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 100px;
+
+      .header-menu {
+
+        nav ul {
+          display: flex;
+          gap: 30px;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          //align-items: center;
+          //justify-content: space-between;
+
+          li {
+            list-style: none;
+
+            &.active {
+              color: #709fdc;
+            }
+
+            a {
+              font-size: 16px;
+              color: $dark-blue-text-color;
+              cursor: pointer;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 89px;
+
+      .phone {
+        font-size: 16px;
+        line-height: 130%;
+        color: #709fdc;
+      }
+
+      .header-actions {
+
+        a {
+          cursor: pointer;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-left: 7px;
+            font-size: 16px;
+            color: $dark-blue-text-color;
+          }
+        }
+      }
+    }
+  }
+}
