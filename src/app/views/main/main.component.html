@@ -1,1 +1,78 @@
-<p>main works!</p>
+<section class="main">
+  <div class="container">
+    <owl-carousel-o [options]="customOptions" #owlCar>
+      <ng-template carouselSlide>
+        <div class="carousel-item">
+          <a class="move-backward" (click)="owlCar.prev()">
+            <img src="assets/images/carousel/previous.png" alt="Previous">
+          </a>
+          <div class="main-text">
+            <div class="main-pre-title">
+              Предложение месяца
+            </div>
+            <h1 class="main-title">
+              Продвижение в Instagram для вашего бизнеса <span>-15%</span>!
+            </h1>
+            <button class="button">Подробнее</button>
+          </div>
+          <div class="main-image">
+            <img src="assets/images/carousel/main1.png" alt="Main">
+          </div>
+          <a class="move-forward" (click)="owlCar.next()">
+            <img src="assets/images/carousel/next.png" alt="Next">
+          </a>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="carousel-item">
+          <a class="move-backward" (click)="owlCar.prev()">
+            <img src="assets/images/carousel/previous.png" alt="Previous">
+          </a>
+          <div class="main-text">
+            <div class="main-pre-title">
+              Акция
+            </div>
+            <h1 class="main-title">
+              Нужен грамотный <span>копирайтер</span>?
+            </h1>
+            <div class="main-description">
+              Весь декабрь у нас действует акция на работу копирайтера.
+            </div>
+            <button class="button">Подробнее</button>
+          </div>
+          <div class="main-image">
+            <img src="assets/images/carousel/main2.png" alt="Main">
+          </div>
+          <a class="move-forward" (click)="owlCar.next()">
+            <img src="assets/images/carousel/next.png" alt="Next">
+          </a>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="carousel-item">
+          <a class="move-backward" (click)="owlCar.prev()">
+            <img src="assets/images/carousel/previous.png" alt="Previous">
+          </a>
+          <div class="main-text">
+            <div class="main-pre-title">
+              Новость дня
+            </div>
+            <h1 class="main-title">
+              <span>6 место </span>в ТОП-10 SMM-агенств Москвы!
+            </h1>
+            <div class="main-description">
+              Мы благодарим каждого, кто голосовал за нас!
+            </div>
+            <button class="button">Подробнее</button>
+          </div>
+          <div class="main-image">
+            <img src="assets/images/carousel/main3.png" alt="Main">
+          </div>
+          <a class="move-forward" (click)="owlCar.next()">
+            <img src="assets/images/carousel/next.png" alt="Next">
+          </a>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>

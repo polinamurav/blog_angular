@@ -14,6 +14,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import { MainComponent } from './views/main/main.component';
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import {AuthInterceptor} from "./core/auth/auth.interceptor";
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    // CarouselModule,
+    CarouselModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

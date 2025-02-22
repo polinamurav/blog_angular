@@ -64,3 +64,23 @@ a.button {
     color: $dark-blue-text-color;
   }
 }
+
+.owl-carousel .owl-item img {
+  width: auto;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+  margin: 5px 10px;
+  background: transparent;
+  border: 1px solid #ffffff;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background: #ffffff;
+}
+
+.owl-theme .owl-nav.disabled+.owl-dots {
+  position: relative;
+  z-index: 999;
+  margin-top: -38px;
+}

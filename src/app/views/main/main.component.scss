@@ -1,0 +1,82 @@
+@import "../../../assets/styles/variables";
+
+.main {
+  padding-bottom: 60px;
+
+  .carousel-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      background-color: #B9D5FD;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 703px;
+      height: 700px;
+      border-radius: 0 18px 852px 0;
+      z-index: 10;
+    }
+
+    .move-backward {
+      margin-left: 10px;
+      z-index: 15;
+    }
+
+    .main-text {
+      margin-left: 55px;
+      z-index: 15;
+
+      .main-pre-title {
+        font-family: Monsterrat, sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: $light-blue-text-color;
+      }
+
+      .main-title {
+        font-family: Lora, sans-serif;
+        font-weight: 400;
+        font-size: 50px;
+        line-height: 130%;
+        color: #fff;
+        margin: 0;
+        //width: 610px;
+
+        span {
+          color: $light-blue-text-color;
+        }
+      }
+
+      .main-description {
+        margin-top: 20px;
+        padding-bottom: 10px;
+        font-family: Monsterrat, sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 130%;
+        color: #fff;
+      }
+
+      .button {
+        margin-top: 40px;
+        width: 163px;
+      }
+    }
+
+    .main-image {
+
+    }
+
+    .move-forward {
+      position: absolute;
+      right: 11px;
+    }
+  }
+}
