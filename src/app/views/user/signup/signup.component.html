@@ -1,4 +1,4 @@
-<section class="signup">
+<section class="signup" [formGroup]="signupForm">
   <div class="container">
     <div class="auth-form">
       <div class="auth-title">
@@ -6,18 +6,39 @@
       </div>
       <div class="auth-inputs">
         <div class="auth-input">
-          <input type="text" class="input" placeholder="Ваше имя">
+          <input type="text" class="input"
+                 [ngStyle]="{'border-color': signupForm.get('name')?.invalid
+                 && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched) ? 'red' : '' }"
+                 placeholder="Ваше имя" formControlName="name">
+          <div class="invalid-input" *ngIf="signupForm.get('name')?.invalid
+                 && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
+            Введите только русские буквы, с заглавной буквы
+          </div>
         </div>
         <div class="auth-input">
-          <input type="email" class="input" placeholder="Электронная почта">
+          <input type="email" class="input"
+                 [ngStyle]="{'border-color': signupForm.get('email')?.invalid
+                 && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched) ? 'red' : '' }"
+                 placeholder="Электронная почта" formControlName="email">
+          <div class="invalid-input" *ngIf="signupForm.get('email')?.invalid
+                 && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+            Введите корректный email
+          </div>
         </div>
         <div class="auth-input">
-          <input type="password" class="input" placeholder="Пароль">
+          <input type="password" class="input"
+                 [ngStyle]="{'border-color': signupForm.get('password')?.invalid
+                 && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched) ? 'red' : '' }"
+                 placeholder="Пароль" formControlName="password">
+          <div class="invalid-input" *ngIf="signupForm.get('password')?.invalid
+                 && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+            Введите не менее 8 символов, хотя бы 1 заглавная буква и 1 цифра
+          </div>
         </div>
         <div class="auth-checkbox">
-          <input type="checkbox" id="agree">
+          <input type="checkbox" id="agree" formControlName="agree">
           <label for="agree">
-            Я принимаю <a href="#">условия пользовательского соглашения</a> и даю <a href="#">согласие на обработку
+            Я принимаю <a routerLink="/">условия пользовательского соглашения</a> и даю <a routerLink="/">согласие на обработку
             персональных данных.</a>
           </label>
         </div>

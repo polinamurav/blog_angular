@@ -18,6 +18,15 @@
       input {
         width: 422px;
       }
+
+      .invalid-input {
+        display: block;
+        color: red;
+        margin-bottom: 10px;
+        font-family: "Monsterrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+      }
     }
 
     .auth-checkbox {
@@ -30,6 +39,7 @@
 
       input {
         margin: 0;
+        cursor: pointer;
       }
 
       label {
@@ -37,6 +47,7 @@
         line-height: 130%;
         margin-left: 10px;
         color: $dark-blue-text-color;
+        cursor: pointer;
 
         a {
           color: $light-blue-text-color;
