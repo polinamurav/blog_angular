@@ -1,0 +1,15 @@
+@import "../../../../assets/styles/auth-form";
+
+.login {
+  padding: 106px 0 92px;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .auth-checkbox {
+      align-items: center;
+    }
+  }
+}

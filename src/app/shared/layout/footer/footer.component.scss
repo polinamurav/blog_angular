@@ -64,6 +64,13 @@ footer.footer {
 
         .footer-button {
           margin-top: 10px;
+
+          .button {
+            padding: 10px 20px;
+            font-size: 12px;
+            font-family: "Monsterrat", sans-serif;
+            font-weight: 500;
+          }
         }
 
         &.footer-address {
