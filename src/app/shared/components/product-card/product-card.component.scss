@@ -1,0 +1,54 @@
+@import "../../../../assets/styles/variables";
+
+.product-card {
+  width: 290px;
+  height: 498px;
+  box-sizing: border-box;
+
+  .product-card-image {
+    border-radius: 5px;
+    width: 291px;
+    height: 291px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .product-card-name {
+    font-family: Monsterrat, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: $light-blue-text-color;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .product-card-description {
+    font-family: Monsterrat, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: $dark-blue-text-color;
+    height: 72px;
+  }
+
+  .product-card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 33px;
+
+    .product-card-price {
+      font-family: "Monsterrat", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 130%;
+      color: $light-blue-text-color;
+    }
+
+    .product-card-action {
+      .button {
+        width: 163px;
+      }
+    }
+  }
+}

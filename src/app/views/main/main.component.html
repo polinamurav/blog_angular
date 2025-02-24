@@ -76,3 +76,26 @@
     </owl-carousel-o>
   </div>
 </section>
+
+<section class="services">
+  <div class="container">
+    <div class="services-title">Услуги, которые мы предлагаем</div>
+    <div class="services-products">
+      <div class="services-product-card" *ngFor="let service of services">
+        <div class="services-product-card-image" style="background-image: url('/assets/images/services/{{service.image}}')"></div>
+        <div class="services-product-card-name">{{ service.name }}</div>
+        <div class="services-product-card-description">
+          {{service.description}}
+        </div>
+        <div class="services-product-card-info">
+          <div class="services-product-card-price">
+            От {{service.price}}₽
+          </div>
+          <div class="services-product-card-action">
+            <button class="button">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
