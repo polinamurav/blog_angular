@@ -155,3 +155,106 @@
     }
   }
 }
+
+.about {
+  padding: 60px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .about-info {
+
+      .about-title {
+        font-family: Lora, sans-serif;
+        font-weight: 400;
+        font-size: 38px;
+        color: $light-blue-text-color;
+        margin-bottom: 20px;
+      }
+
+      .about-description {
+        font-family: Monsterrat, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        color: #1e1a2b;
+        margin-bottom: 40px;
+        max-width: 633px;
+
+        span {
+          font-weight: 500;
+        }
+      }
+
+      .advantages-title {
+        font-family: Lora, sans-serif;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 130%;
+        color: $light-blue-text-color;
+        margin-bottom: 20px;
+      }
+
+      .advantages-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 71px;
+        grid-row-gap: 20px;
+
+        .advantages-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .advantages-item-number {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #B9D5FD;
+            width: 40px;
+            height: 40px;
+            color: #709fdc;
+            cursor: pointer;
+            transition: .5s;
+
+            span {
+              font-family: Lora, sans-serif;
+              font-weight: 500;
+              font-size: 50px;
+              line-height: 105%;
+            }
+          }
+
+          .advantages-item-text {
+            font-family: Monsterrat, sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 130%;
+            color: #1e1a2b;
+            width: 256px;
+            margin-left: 20px;
+
+            span {
+              font-weight: 500;
+            }
+          }
+
+          &:hover .advantages-item-number{
+            background-color: #5781be;
+            color: #B9D5FD;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.advantage-number {
+
+}
