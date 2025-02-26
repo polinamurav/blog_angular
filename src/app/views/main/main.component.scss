@@ -242,7 +242,7 @@
             }
           }
 
-          &:hover .advantages-item-number{
+          &:hover .advantages-item-number {
             background-color: #5781be;
             color: #B9D5FD;
             cursor: pointer;
@@ -284,6 +284,134 @@
         font-size: 20px;
         color: #709fdc;
         margin-right: 14px;
+      }
+    }
+  }
+}
+
+.reviews {
+  padding: 60px 0;
+
+  .container {
+
+    .reviews-title {
+      font-family: Lora, sans-serif;
+      font-weight: 400;
+      font-size: 38px;
+      color: $light-blue-text-color;
+      margin-bottom: 20px;
+    }
+
+    .reviews-carousel {
+      position: relative;
+
+      .review-item {
+        width: 396px;
+        height: 267px;
+        border: 2px solid $light-blue-text-color;
+        border-radius: 5px;
+        padding: 30px;
+        box-sizing: border-box;
+
+        .review-item-head {
+          display: flex;
+          align-items: center;
+
+          .review-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+            margin-right: 26px;
+          }
+
+          .review-item-name {
+            font-family: "Monsterrat", sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: $light-blue-text-color;
+          }
+        }
+
+        .review-item-text {
+          margin-top: 15px;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 140%;
+          color: $dark-blue-text-color;
+        }
+      }
+
+      .reviews-arrows {
+        display: flex;
+
+        a {
+          top: calc(50% - 5px);
+          display: flex;
+          position: absolute;
+          cursor: pointer;
+
+          &.move-backward {
+            left: -41px;
+          }
+
+          &.move-forward {
+            right: -41px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.contacts {
+  padding-top: 60px;
+  padding-bottom: 120px;
+
+  .container {
+    display: flex;
+    align-items: start;
+
+    .contacts-info {
+      margin-left: 26px;
+
+      .contacts-title {
+        font-family: Lora, sans-serif;
+        font-weight: 400;
+        font-size: 38px;
+        color: #709fdc;
+        margin-bottom: 20px;
+      }
+
+      .contacts-blocks {
+
+        .contacts-block {
+          margin-bottom: 20px;
+          font-family: "Monsterrat", sans-serif;
+
+          .contacts-head {
+            font-weight: 500;
+            font-size: 20px;
+            color: $light-blue-text-color;
+            margin-bottom: 10px;
+          }
+
+          .contacts-body {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 130%;
+            color: $dark-blue-text-color;
+            display: block;
+            text-decoration: none;
+          }
+
+          &.contacts-social {
+            .contacts-body a:not(:last-child) {
+              margin-right: 20px;
+            }
+          }
+        }
       }
     }
   }
