@@ -253,8 +253,38 @@
   }
 }
 
+.popular {
+  padding: 60px 0;
 
+  .container {
 
-.advantage-number {
+    .popular-title {
+      font-family: Lora, sans-serif;
+      font-weight: 400;
+      font-size: 38px;
+      color: $light-blue-text-color;
+      margin-bottom: 40px;
+    }
 
+    .popular-products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 24px;
+    }
+
+    .popular-detail {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      span {
+        font-family: Monsterrat, sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        color: #709fdc;
+        margin-right: 14px;
+      }
+    }
+  }
 }

@@ -1,0 +1,9 @@
+<div class="product-card" *ngIf="product">
+  <div class="product-card-image" style="background-image: url({{serverStaticPath + product.image}})"></div>
+  <div class="product-card-category"> {{ product.category }}</div>
+  <div class="product-card-title">{{ product.title }}</div>
+  <div class="product-card-description">{{ product.description }}</div>
+  <div class="product-card-action">
+    <a [routerLink]="'/product/' + product.url" class="product-card-detail">Читать дальше</a>
+  </div>
+</div>

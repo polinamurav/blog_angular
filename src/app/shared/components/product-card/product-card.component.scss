@@ -1,9 +1,14 @@
 @import "../../../../assets/styles/variables";
 
 .product-card {
-  width: 290px;
-  height: 498px;
+  width: 292px;
+  height: 571px;
   box-sizing: border-box;
+  position: relative;
+  font-family: Monsterrat, sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
 
   .product-card-image {
     border-radius: 5px;
@@ -13,42 +18,43 @@
     background-position: center;
   }
 
-  .product-card-name {
+  .product-card-category {
+    position: absolute;
+    right: 9px;
+    top: 10px;
+    border-radius: 5px;
+    padding: 10px 18px;
+    height: 34px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-size: 11px;
+    text-align: center;
+    color: $light-blue-text-color;
+  }
+
+  .product-card-title {
     font-family: Monsterrat, sans-serif;
     font-weight: 500;
     font-size: 20px;
     color: $light-blue-text-color;
+    line-height: 130%;
     margin-top: 15px;
     margin-bottom: 10px;
   }
 
   .product-card-description {
-    font-family: Monsterrat, sans-serif;
-    font-weight: 400;
     font-size: 14px;
     line-height: 130%;
     color: $dark-blue-text-color;
-    height: 72px;
   }
 
-  .product-card-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 33px;
+  .product-card-action {
+    margin-top: auto;
 
-    .product-card-price {
-      font-family: "Monsterrat", sans-serif;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 130%;
-      color: $light-blue-text-color;
-    }
-
-    .product-card-action {
-      .button {
-        width: 163px;
-      }
+    a {
+      font-size: 16px;
+      text-decoration: underline;
+      color: #709fdc;
     }
   }
 }

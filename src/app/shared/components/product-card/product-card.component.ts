@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
+import {ProductType} from "../../../../assets/types/product.type";
 
 @Component({
   selector: 'product-card',
@@ -9,6 +10,7 @@ import {environment} from "../../../../environments/environment";
 export class ProductCardComponent implements OnInit {
 
   serverStaticPath = environment.serverStaticPath;
+  @Input() product!: ProductType;
 
   constructor() { }
 

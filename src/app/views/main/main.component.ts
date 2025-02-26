@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {ProductType} from "../../../assets/types/product.type";
+import {ProductService} from "../../shared/services/product.service";
 
 @Component({
   selector: 'app-main',
@@ -56,10 +58,15 @@ export class MainComponent implements OnInit {
       price: '750',
     },
   ];
+  products: ProductType[] = [];
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.productService.getPopularProducts()
+      .subscribe((data: ProductType[]) => {
+        this.products = data;
+      });
   }
 
 }
