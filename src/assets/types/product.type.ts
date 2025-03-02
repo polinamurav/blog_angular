@@ -1,3 +1,5 @@
+import {CommentType} from "./comment.type";
+
 export type ProductType = {
   id: string,
   title: string,
@@ -7,6 +9,6 @@ export type ProductType = {
   category: string,
   url: string,
   text?: string,
-  comments?: string,
+  comments?: CommentType[],
   commentsCount?: string
 }

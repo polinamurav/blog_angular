@@ -101,6 +101,145 @@
               }
             }
           }
+
+          .comments {
+
+            .comments-title {
+              @include head-lora-38;
+              margin-bottom: 20px;
+            }
+
+            .comments-description {
+              font-family: Monsterrat, sans-serif;
+              font-weight: 400;
+              font-size: 14px;
+              color: $dark-blue-text-color;
+
+              a {
+                color: $light-blue-text-color;
+                text-decoration: none;
+              }
+            }
+
+            .comments-form {
+              padding-top: 20px;
+
+              .comment-textarea {
+                border: 2px solid $light-blue-text-color;
+                border-radius: 3px;
+                padding: 20px;
+                width: 818px;
+                height: 248px;
+                background: #fff;
+                box-sizing: border-box;
+                outline: none;
+                margin-bottom: 20px;
+
+                &::placeholder {
+                  font-family: Monsterrat, sans-serif;
+                  font-weight: 400;
+                  font-size: 14px;
+                  color: #a8aba7;
+                }
+              }
+
+              .button {
+                width: 422px;
+              }
+            }
+
+            .comments-items {
+              margin-top: 60px;
+              padding-bottom: 20px;
+
+              .comments-item {
+                font-family: "Monsterrat", sans-serif;
+                max-width: 854px;
+                margin-bottom: 40px;
+
+                .comments-item-header {
+                  display: flex;
+                  align-items: start;
+                  margin-bottom: 15px;
+
+                  .comments-item-avatar {
+                    background-position: center;
+                    background-size: cover;
+                    width: 60px;
+                    height: 60px;
+                  }
+
+                  .comments-item-info {
+                    font-weight: 600;
+                    margin-left: 26px;
+
+                    .comments-item-info-name {
+                      font-size: 18px;
+                      color: $light-blue-text-color;
+                      margin-bottom: 10px;
+                    }
+
+                    .comments-item-info-date {
+                      font-size: 14px;
+                      color: #bebebe;
+                    }
+                  }
+                }
+
+                .comments-item-body {
+
+                  .comments-item-text {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 140%;
+                    color: $dark-blue-text-color;
+                    margin-bottom: 39px;
+                  }
+
+                  .comments-item-actions {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    .comments-item-actions-reaction {
+                      display: flex;
+                      align-items: center;
+                      cursor: pointer;
+
+                      span {
+                        margin-right: 3px;
+                      }
+
+                      &.active {
+                        color: $light-blue-text-color;
+
+                        svg path {
+                          stroke: $light-blue-text-color;
+                        }
+                      }
+                    }
+
+                    .comments-item-actions-complaint {
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+
+            .comments-more {
+              display: flex;
+              align-items: center;
+
+              span {
+                margin-right: 10px;
+                font-family: Monsterrat, sans-serif;
+                font-weight: 500;
+                font-size: 20px;
+                color: #709fdc;
+              }
+            }
+          }
         }
 
         .detail-content-actions {
