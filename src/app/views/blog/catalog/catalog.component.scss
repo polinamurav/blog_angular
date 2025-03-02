@@ -1,0 +1,166 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.catalog {
+  padding-top: 80px;
+  padding-bottom: 120px;
+
+  .container {
+    .catalog-title {
+      @include head-lora-38;
+      margin-bottom: 40px;
+    }
+
+    .catalog-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      .catalog-applied-filters {
+        display: flex;
+        flex-wrap: wrap;
+
+        .catalog-applied-filter {
+          border: 2px solid $light-blue-text-color;
+          border-radius: 5px;
+          padding: 8px 20px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          margin-right: 20px;
+          margin-bottom: 20px;
+          font-size: 16px;
+          color: $light-blue-text-color;
+
+          a {
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            margin-left: 8px;
+          }
+        }
+      }
+
+      .catalog-filter {
+        border-radius: 5px;
+        width: 148px;
+        min-width: 148px;
+        box-sizing: border-box;
+        position: relative;
+        cursor: pointer;
+        font-size: 16px;
+
+        .catalog-filter-head {
+          display: flex;
+          align-items: center;
+          padding: 12px 0 12px;
+          justify-content: space-between;
+          color: $dark-blue-text-color;
+        }
+
+        .catalog-filter-body {
+          position: absolute;
+          width: 100%;
+          box-sizing: border-box;
+          z-index: 3;
+          display: none;
+          padding: 12px 23px;
+          background: #ffffff;
+          border-radius: 0 0 5px 5px;
+          font-family: "Monsterrat", sans-serif;
+          font-weight: 400;
+          color: #bebebe;
+          border: 2px solid #b9d5fd;
+
+          .catalog-filter-item {
+            padding: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            cursor: pointer;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &.active {
+              color: #071739;
+            }
+          }
+        }
+
+        &.open {
+          width: 257px;
+          min-width: 257px;
+
+          .catalog-filter-head {
+            background: #b9d5fd;
+            border-radius: 5px 5px 0 0;
+            padding-right: 23px;
+            padding-left: 23px;
+          }
+
+          .catalog-filter-body {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .catalog-products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px 24px;
+    }
+
+    .pagination {
+      margin-top: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .pagination-arrow {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.disabled {
+          opacity: 0.5;
+        }
+      }
+
+      .pagination-pages {
+        margin-left: 40px;
+        margin-right: 40px;
+        display: flex;
+        align-items: center;
+
+        a.pagination-page {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          padding: 10px;
+          font-family: "Monsterrat", sans-serif;
+          font-weight: 400;
+          font-size: 20px;
+          text-align: center;
+          color: $dark-blue-text-color;
+          margin-right: 20px;
+          cursor: pointer;
+
+          &.active {
+            color: #b9d5fd;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

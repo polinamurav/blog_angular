@@ -6,4 +6,7 @@ export type ProductType = {
   date: string,
   category: string,
   url: string,
+  text?: string,
+  comments?: string,
+  commentsCount?: string
 }

@@ -1,0 +1,83 @@
+<div class="catalog">
+  <div class="container">
+    <div class="catalog-title">Блог</div>
+    <div class="catalog-head">
+      <div class="catalog-applied-filters">
+        <div class="catalog-applied-filter">
+          <span> Дизайн </span>
+          <a>
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_17462_954)">
+                <line x1="1.93562" y1="3.1499" x2="13.9564" y2="15.1707" stroke="#A8ABA7" stroke-linecap="round"/>
+                <line x1="13.9238" y1="3.12996" x2="1.90301" y2="15.1508" stroke="#A8ABA7" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </a>
+        </div>
+        <div class="catalog-applied-filter">
+          <span> СММ </span>
+          <a>
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_17462_954)">
+                <line x1="1.93562" y1="3.1499" x2="13.9564" y2="15.1707" stroke="#A8ABA7" stroke-linecap="round"/>
+                <line x1="13.9238" y1="3.12996" x2="1.90301" y2="15.1508" stroke="#A8ABA7" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="catalog-filter open">
+        <div class="catalog-filter-head">
+          <span>Фильтр</span>
+          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
+              fill="#071739"/>
+          </svg>
+        </div>
+        <div class="catalog-filter-body">
+          <div class="catalog-filter-item">
+            Фриланс
+            <span>+</span>
+          </div>
+          <div class="catalog-filter-item active">
+            Дизайн
+            <span>-</span>
+<!--            думаю через ngIf менять + на минус-->
+          </div>
+          <div class="catalog-filter-item">
+            СММ
+            <span>+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="catalog-products">
+      <product-card *ngFor="let product of products" [product]="product"></product-card>
+      <div *ngIf="products.length === 0">
+        <h2>Товары не найдены!</h2>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <div class="pagination-arrow" [class.disabled]="activeParams.page ? activeParams.page === 1 : true" (click)="openPrevPage()">
+        <img src="assets/images/reviews/previous.png" alt="Previous">
+      </div>
+      <div class="pagination-pages">
+<!--        <a class="pagination-page" (click)="openPage(page)"-->
+<!--           [class.active]="this.activeParams.page ? this.activeParams.page === page : (page === 1)"-->
+<!--           *ngFor="let page of pages">{{ page }}</a>-->
+        <a href="#" class="pagination-page active">1</a>
+        <a href="#" class="pagination-page">2</a>
+        <a href="#" class="pagination-page">3</a>
+        <a href="#" class="pagination-page">4</a>
+        <a href="#" class="pagination-page">5</a>
+      </div>
+      <div class="pagination-arrow" (click)="openNextPage()"
+           [class.disabled]="activeParams.page ? activeParams.page === pages.length : false">
+        <img src="assets/images/reviews/next.png" alt="Next">
+      </div>
+    </div>
+  </div>
+</div>
