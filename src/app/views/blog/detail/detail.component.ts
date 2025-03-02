@@ -12,6 +12,7 @@ import {ProductService} from "../../../shared/services/product.service";
 export class DetailComponent implements OnInit {
 
   product!: ProductType;
+  relatedProducts!: ProductType[];
   recommendedProducts: ProductType[] = [];
   serverStaticPath = environment.serverStaticPath;
 
@@ -24,6 +25,11 @@ export class DetailComponent implements OnInit {
         .subscribe((data: ProductType) => {
           this.product = data;
         })
+
+      this.productService.getRelatedProduct(params['url'])
+        .subscribe((relatedData: ProductType[]) => {
+          this.relatedProducts = relatedData;
+        });
     });
   }
 

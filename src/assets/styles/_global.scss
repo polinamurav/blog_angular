@@ -85,10 +85,12 @@ a.button {
   margin-top: -38px;
 }
 
-.detail-info {
+.detail-text {
   max-width: 818px;
 
   h1 {
+    margin: 0;
+    padding: 0;
     font-family: Lora, sans-serif;
     font-weight: 400;
     font-size: 38px;
@@ -96,19 +98,11 @@ a.button {
     color: $light-blue-text-color;
     max-width: 607px;
     margin-bottom: 40px;
-    margin-top: 0;
-  }
-
-  p:first-of-type {
-    font-size: 20px;
-    line-height: 130%;
-    color: $light-blue-text-color;
-    max-width: 607px;
-    //height: 250px;
-    margin-bottom: 112px;
   }
 
   p {
+    margin: 0;
+    padding: 0;
     font-family: "Monsterrat", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -118,6 +112,8 @@ a.button {
   }
 
   h3 {
+    margin: 0;
+    padding: 0;
     padding-top: 20px;
     margin-bottom: 20px;
     font-family: "Monsterrat", sans-serif;

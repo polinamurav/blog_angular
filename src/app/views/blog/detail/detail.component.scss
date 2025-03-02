@@ -18,6 +18,8 @@
         font-size: 16px;
         color: #b9d5fd;
         margin-right: 8px;
+        text-decoration: none;
+        cursor: pointer;
       }
 
       span {
@@ -34,34 +36,92 @@
     }
 
     .detail-product {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 40px;
 
-      .detail-image {
-        border-radius: 5px;
-        width: 527px;
-        height: 320px;
-        background-size: cover;
-        background-position: center;
+      .detail-product-header {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        margin-bottom: 60px;
+
+        .detail-product-header-info {
+          max-width: 607px;
+
+          .detail-product-header-title {
+            font-family: Lora, sans-serif;
+            font-weight: 400;
+            font-size: 38px;
+            line-height: 130%;
+            color: $light-blue-text-color;
+            margin-bottom: 40px;
+            margin-top: 0;
+          }
+
+          .detail-product-header-description {
+            font-family: "Monsterrat", sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 130%;
+            color: $light-blue-text-color;
+          }
+        }
+
+        .detail-product-header-actions {
+          .detail-image {
+            border-radius: 5px;
+            width: 527px;
+            height: 320px;
+            background-size: cover;
+            background-position: center;
+          }
+        }
       }
-    }
 
-    .share-product {
-      display: flex;
-      align-items: center;
-      font-family: Monsterrat, sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      color: $light-blue-text-color;
-      margin-bottom: 60px;
+      .detail-product-body {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
 
-      .share-socials {
-        margin-left: 20px;
+        .detail-content-info {
 
-        a:not(:last-child) {
-          margin-right: 13px;
+          .share-product {
+            display: flex;
+            align-items: center;
+            font-family: Monsterrat, sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            color: $light-blue-text-color;
+            margin-bottom: 60px;
+            padding-top: 40px;
+
+            .share-socials {
+              margin-left: 20px;
+
+              a:not(:last-child) {
+                margin-right: 13px;
+              }
+            }
+          }
+        }
+
+        .detail-content-actions {
+          padding-top: 60px;
+
+          .detail-related-title {
+            font-family: Lora, sans-serif;
+            font-weight: 400;
+            font-size: 26px;
+            color: $light-blue-text-color;
+            margin-bottom: 20px;
+            text-align: end;
+            margin-right: 98px;
+          }
+
+          .detail-product-related {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: end;
+            gap: 60px;
+          }
         }
       }
     }
