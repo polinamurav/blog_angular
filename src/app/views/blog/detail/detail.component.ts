@@ -10,6 +10,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {DefaultResponseType} from "../../../../assets/types/default-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ReactionType} from "../../../../assets/types/reaction.type";
 
 @Component({
   selector: 'app-detail',
@@ -21,12 +22,12 @@ export class DetailComponent implements OnInit {
   product!: ProductType;
   relatedProducts!: ProductType[];
   comments: CommentType[] = [];
-  recommendedProducts: ProductType[] = [];
   serverStaticPath = environment.serverStaticPath;
   isLogged: boolean = false;
   totalCommentsCount: number = 0;
   isLoading: boolean = false;
   canLoadMoreComments: boolean = true;
+  userReactions: ReactionType[] = [];
 
   commentForm = this.fb.group({
     text: ['', [Validators.required]]
@@ -54,15 +55,24 @@ export class DetailComponent implements OnInit {
             this.comments = data.comments;
             this.totalCommentsCount = +data.commentsCount || 0;
           }
+
+          this.commentService.getReactions(this.product.id)
+            .subscribe((data: ReactionType[]) => {
+              this.userReactions = data;
+            })
+
         })
 
       this.productService.getRelatedProduct(params['url'])
         .subscribe((relatedData: ProductType[]) => {
           this.relatedProducts = relatedData;
         });
-
-      this.allComments();
     });
+  }
+
+  getUserReaction(commentId: string): string | null {
+    const reaction = this.userReactions.find(r => r.comment === commentId);
+    return reaction ? reaction.action : null;
   }
 
   addComment() {
@@ -111,5 +121,33 @@ export class DetailComponent implements OnInit {
 
   checkIfCanLoadMoreComments() {
     this.canLoadMoreComments = this.comments.length < this.totalCommentsCount;
+  }
+
+  addReaction(action: string, commentId: string) {
+    const existingReactionIndex = this.userReactions.findIndex(r => r.comment === commentId);
+
+    if (existingReactionIndex !== -1) {
+      if (this.userReactions[existingReactionIndex].action === action) {
+        this.userReactions.splice(existingReactionIndex, 1);
+      } else {
+        this.userReactions[existingReactionIndex].action = action;
+      }
+    } else {
+      this.userReactions.push({ comment: commentId, action });
+    }
+
+    this.commentService.addReaction(action, commentId).subscribe({
+      next: (data: DefaultResponseType) => {
+        if (data.error) {
+          this._snackBar.open(data.message);
+          throw new Error(data.message);
+        } else {
+          this._snackBar.open('Ваш голос учтен!');
+        }
+      },
+      error: (error) => {
+        this._snackBar.open('Ошибка при добавлении реакции');
+      }
+    });
   }
 }
