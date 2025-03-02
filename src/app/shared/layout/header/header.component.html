@@ -8,19 +8,19 @@
         <nav>
           <ul>
             <li>
-              <a routerLink="/" class="active">Услуги</a>
+              <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Услуги</a>
             </li>
             <li>
-              <a routerLink="/">О нас</a>
+              <a routerLink="/" fragment="about">О нас</a>
             </li>
             <li>
-              <a routerLink="/catalog">Статьи</a>
+              <a routerLink="/catalog" routerLinkActive="active">Статьи</a>
             </li>
             <li>
-              <a routerLink="/">Отзывы</a>
+              <a routerLink="/" fragment="reviews">Отзывы</a>
             </li>
             <li>
-              <a routerLink="/">Контакты</a>
+              <a routerLink="/" fragment="contacts">Контакты</a>
             </li>
           </ul>
         </nav>
