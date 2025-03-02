@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from "../../../../environments/environment";
+import {ProductType} from "../../../../assets/types/product.type";
+import {ActivatedRoute} from "@angular/router";
+import {ProductService} from "../../../shared/services/product.service";
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  product!: ProductType;
+  recommendedProducts: ProductType[] = [];
+  serverStaticPath = environment.serverStaticPath;
+
+  constructor(private productService: ProductService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.productService.getProduct(params['url'])
+        .subscribe((data: ProductType) => {
+          this.product = data;
+        })
+    });
   }
 
 }
