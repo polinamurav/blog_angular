@@ -134,11 +134,12 @@
                 box-sizing: border-box;
                 outline: none;
                 margin-bottom: 20px;
+                font-family: Monsterrat, sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                color: $dark-blue-text-color;
 
                 &::placeholder {
-                  font-family: Monsterrat, sans-serif;
-                  font-weight: 400;
-                  font-size: 14px;
                   color: #a8aba7;
                 }
               }

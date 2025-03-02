@@ -23,12 +23,21 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
+
+      if (isLoggedIn) {
+        this.loadUser();
+      }
     });
 
-    this.authService.getUser()
-      .subscribe((data: UserType) => {
-        this.user = data;
-      });
+    if (this.isLogged) {
+      this.loadUser();
+    }
+  }
+
+  loadUser() {
+    this.authService.getUser().subscribe((data: UserType) => {
+      this.user = data;
+    });
   }
 
   logout() {

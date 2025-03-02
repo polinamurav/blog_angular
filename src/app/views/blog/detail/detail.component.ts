@@ -5,6 +5,11 @@ import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../../shared/services/product.service";
 import {CommentType} from "../../../../assets/types/comment.type";
 import {CommentService} from "../../../shared/services/comment.service";
+import {AuthService} from "../../../core/auth/auth.service";
+import {FormBuilder, Validators} from "@angular/forms";
+import {DefaultResponseType} from "../../../../assets/types/default-response.type";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-detail',
@@ -18,18 +23,36 @@ export class DetailComponent implements OnInit {
   comments: CommentType[] = [];
   recommendedProducts: ProductType[] = [];
   serverStaticPath = environment.serverStaticPath;
+  isLogged: boolean = false;
+  totalCommentsCount: number = 0;
+  isLoading: boolean = false;
+  canLoadMoreComments: boolean = true;
+
+  commentForm = this.fb.group({
+    text: ['', [Validators.required]]
+  });
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
-              private commentService: CommentService) { }
+              private authService: AuthService,
+              private commentService: CommentService,
+              private fb: FormBuilder,
+              private _snackBar: MatSnackBar) {
+    this.isLogged = this.authService.getIsLoggedIn();
+  }
 
   ngOnInit(): void {
+    this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
+      this.isLogged = isLoggedIn;
+    });
+
     this.activatedRoute.params.subscribe(params => {
       this.productService.getProduct(params['url'])
         .subscribe((data: ProductType) => {
           this.product = data;
-          if (data.comments) {
+          if (data.comments && data.commentsCount) {
             this.comments = data.comments;
+            this.totalCommentsCount = +data.commentsCount || 0;
           }
         })
 
@@ -37,7 +60,56 @@ export class DetailComponent implements OnInit {
         .subscribe((relatedData: ProductType[]) => {
           this.relatedProducts = relatedData;
         });
+
+      this.allComments();
     });
   }
 
+  addComment() {
+    if (this.commentForm.valid && this.commentForm.value.text) {
+      this.commentService.addComment(this.commentForm.value.text, this.product.id)
+        .subscribe({
+          next: (data: DefaultResponseType) => {
+            if (data.error !== undefined) {
+              this._snackBar.open(data.message);
+              throw new Error(data.message);
+            }
+
+            this.allComments();
+            this.commentForm.reset();
+          },
+          error: (errorResponse: HttpErrorResponse) => {
+            if (errorResponse.error && errorResponse.error.message) {
+              this._snackBar.open(errorResponse.error.message);
+            } else {
+              this._snackBar.open('Ошибка добавления комментария');
+            }
+          }
+        });
+
+    }
+  }
+
+  allComments() {
+    const params = {
+      offset: this.comments.length,
+      article: this.product.id
+    };
+
+    this.commentService.getComments(params).subscribe({
+      next: (data) => {
+        if (data && data.comments) {
+          this.comments = [...this.comments, ...data.comments];
+          this.checkIfCanLoadMoreComments();
+        }
+      },
+      error: (errorResponse) => {
+        this._snackBar.open('Ошибка загрузки комментариев');
+      }
+    });
+  }
+
+  checkIfCanLoadMoreComments() {
+    this.canLoadMoreComments = this.comments.length < this.totalCommentsCount;
+  }
 }
