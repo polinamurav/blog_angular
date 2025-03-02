@@ -275,15 +275,21 @@
     .popular-detail {
       margin-top: 40px;
       display: flex;
-      align-items: center;
       justify-content: flex-end;
 
-      span {
-        font-family: Monsterrat, sans-serif;
-        font-weight: 500;
-        font-size: 20px;
-        color: #709fdc;
-        margin-right: 14px;
+      .popular-detail-container {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+
+        span {
+          font-family: Monsterrat, sans-serif;
+          font-weight: 500;
+          font-size: 20px;
+          color: #709fdc;
+          margin-right: 14px;
+          cursor: pointer;
+        }
       }
     }
   }

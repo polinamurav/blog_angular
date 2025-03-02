@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
+import {Observable, Subject, throwError} from "rxjs";
 import {DefaultResponseType} from "../../../assets/types/default-response.type";
 import {LoginResponseType} from "../../../assets/types/login-response.type";
 import {environment} from "../../../environments/environment";
@@ -14,7 +14,12 @@ export class AuthService {
   public refreshTokenKey: string = 'refreshToken';
   public userIdKey: string = 'userId';
 
-  constructor(private http: HttpClient) { }
+  public isLogged$: Subject<boolean> = new Subject<boolean>();
+  private isLogged: boolean = false;
+
+  constructor(private http: HttpClient) {
+    this.isLogged = !!localStorage.getItem(this.accessTokenKey);
+  }
 
   getUser(): Observable<UserType> {
     return this.http.get<UserType>(environment.api + 'users');
@@ -52,14 +57,22 @@ export class AuthService {
     throw throwError(() => 'Can not use token');
   }
 
+  public getIsLoggedIn() {
+    return this.isLogged;
+  }
+
   setTokens(accessToken: string, refreshToken: string) {
     localStorage.setItem(this.accessTokenKey, accessToken);
     localStorage.setItem(this.refreshTokenKey, refreshToken);
+    this.isLogged = true;
+    this.isLogged$.next(true);
   }
 
   removeTokens(): void {
     localStorage.removeItem(this.accessTokenKey);
     localStorage.removeItem(this.refreshTokenKey);
+    this.isLogged = false;
+    this.isLogged$.next(false);
   }
 
   getTokens(): {accessToken: string | null, refreshToken: string | null} {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../core/auth/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {UserType} from "../../../../assets/types/user.type";
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,24 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  isLogged: boolean = true;
+  isLogged: boolean = false;
+  user!: UserType;
 
   constructor(private _snackBar: MatSnackBar,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router) {
+    this.isLogged = this.authService.getIsLoggedIn();
+  }
 
   ngOnInit(): void {
+    this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
+      this.isLogged = isLoggedIn;
+    });
+
+    this.authService.getUser()
+      .subscribe((data: UserType) => {
+        this.user = data;
+      });
   }
 
   logout() {
