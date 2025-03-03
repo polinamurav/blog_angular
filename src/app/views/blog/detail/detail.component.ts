@@ -130,10 +130,14 @@ export class DetailComponent implements OnInit {
       if (this.userReactions[existingReactionIndex].action === action) {
         this.userReactions.splice(existingReactionIndex, 1);
       } else {
-        this.userReactions[existingReactionIndex].action = action;
+        if (action === 'like' || action === 'dislike') {
+          this.userReactions[existingReactionIndex].action = action;
+        } else {
+          this.userReactions.push({ comment: commentId, action });
+        }
       }
     } else {
-      this.userReactions.push({ comment: commentId, action });
+      this.userReactions.push({comment: commentId, action});
     }
 
     this.commentService.addReaction(action, commentId).subscribe({
@@ -142,11 +146,15 @@ export class DetailComponent implements OnInit {
           this._snackBar.open(data.message);
           throw new Error(data.message);
         } else {
-          this._snackBar.open('Ваш голос учтен!');
+          if (action === 'violate') {
+            this._snackBar.open('Жалоба отправлена');
+          } else {
+            this._snackBar.open('Ваш голос учтен!');
+          }
         }
       },
       error: (error) => {
-        this._snackBar.open('Ошибка при добавлении реакции');
+        this._snackBar.open('Жалоба уже отправлена');
       }
     });
   }
