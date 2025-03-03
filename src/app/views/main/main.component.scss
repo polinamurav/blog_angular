@@ -1,4 +1,5 @@
 @import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
 
 .main {
   padding-bottom: 60px;
@@ -417,6 +418,121 @@
               margin-right: 20px;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+
+.popup {
+  //display: none;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(11, 11, 12, 0.76);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  .popup-container {
+    position: fixed;
+    background-color: #ffffff;
+    padding: 94px 140px 86px;
+    width: 727px;
+    height: 489px;
+    box-sizing: border-box;
+    border: 2px solid $light-blue-text-color;
+    border-radius: 10px;
+
+    .popup-close {
+      width: 16px;
+      height: 16px;
+      text-align: right;
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+
+      path {
+        fill: #BEBEBE;
+      }
+    }
+
+    .popup-main {
+
+      .popup-text {
+        @include head-lora-38;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .popup-form {
+        .input {
+          width: 422px;
+          height: 53px;
+          margin-bottom: 5px;
+
+          option {
+            width: inherit;
+            height: inherit;
+          }
+        }
+
+        select.input {
+          appearance: none;
+          cursor: pointer;
+        }
+
+        .error-input {
+          color: red;
+          margin-bottom: 10px;
+          margin-top: -5px;
+        }
+
+        .popup-form-button {
+          margin-top: 20px;
+
+          .button {
+            width: 422px;
+          }
+        }
+      }
+    }
+
+    .popup-success {
+      //display: flex;
+      font-size: 18px;
+      font-family: Museo500, sans-serif;
+      color: rgb(255, 255, 255);
+      line-height: 1.278;
+      text-align: center;
+
+      .popup-success-text {
+        @include head-lora-38;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 69px;
+      }
+
+      .popup-success-description {
+        font-family: Monsterrat, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        text-align: center;
+        color: #1e1a2b;
+        margin-bottom: 40px;
+      }
+
+      .popup-success-button {
+        .button {
+          width: 73px;
+          height: 36px;
+          padding: 0;
+          font-size: 12px;
         }
       }
     }

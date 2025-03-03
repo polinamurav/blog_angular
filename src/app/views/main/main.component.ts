@@ -2,6 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ProductType} from "../../../assets/types/product.type";
 import {ProductService} from "../../shared/services/product.service";
+import {FormBuilder, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {DefaultResponseType} from "../../../assets/types/default-response.type";
+import {HttpErrorResponse} from "@angular/common/http";
+import {RequestService} from "../../shared/services/request.service";
+import {RequestType} from "../../../assets/types/request.type";
 
 @Component({
   selector: 'app-main',
@@ -105,8 +111,22 @@ export class MainComponent implements OnInit {
     },
   ]
   products: ProductType[] = [];
+  isPopUp: boolean = false;
+  isSuccess: boolean = false;
+  selectedService: string = '';
+  popUpType: string = '';
+  hasError: boolean = false;
 
-  constructor(private productService: ProductService) {
+  popupForm = this.fb.group({
+    service: ['', Validators.required],
+    name: ['', Validators.required],
+    phone: ['', [Validators.required]]
+  });
+
+  constructor(private productService: ProductService,
+              private requestService: RequestService,
+              private fb: FormBuilder,
+              private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -116,4 +136,45 @@ export class MainComponent implements OnInit {
       });
   }
 
+  closePopUp() {
+    this.isPopUp = false;
+  }
+
+  openPopUp(serviceName: string, type: string) {
+    this.selectedService = serviceName;
+    this.isPopUp = true;
+    this.isSuccess = false;
+    this.popUpType = type;
+    this.popupForm.reset();
+    this.popupForm.patchValue({ service: serviceName });
+  }
+
+  makeAppointment() {
+    if (this.popupForm.valid && this.popupForm.value.service && this.popupForm.value.name && this.popupForm.value.phone) {
+      const paramsObject: RequestType = {
+        service: this.popupForm.value.service,
+        name: this.popupForm.value.name,
+        phone: this.popupForm.value.phone,
+        type: this.popUpType
+      };
+
+      this.requestService.addRequest(paramsObject)
+        .subscribe({
+          next: (data: DefaultResponseType) => {
+            if (data.error) {
+              this.hasError = true;
+              throw new Error(data.message);
+            } else {
+              this.isSuccess = true;
+              this.hasError = false;
+            }
+          },
+          error: () => {
+            this.hasError = true;
+            this._snackBar.open('Произошла ошибка при отправке формы, попробуйте еще раз.');
+          }
+        });
+
+    }
+  }
 }
