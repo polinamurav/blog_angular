@@ -5,7 +5,6 @@ import {ProductService} from "../../shared/services/product.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DefaultResponseType} from "../../../assets/types/default-response.type";
-import {HttpErrorResponse} from "@angular/common/http";
 import {RequestService} from "../../shared/services/request.service";
 import {RequestType} from "../../../assets/types/request.type";
 

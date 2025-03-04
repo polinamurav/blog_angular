@@ -16,6 +16,7 @@ import { MainComponent } from './views/main/main.component';
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import { AgreementComponent } from './views/agreement/agreement.component';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AgreementComponent } from './views/agreement/agreement.component';
     ReactiveFormsModule,
     SharedModule,
     CarouselModule,
+    InputMaskModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

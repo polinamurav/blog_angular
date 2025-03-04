@@ -348,10 +348,11 @@
                [ngStyle]="{'border-color': popupForm.get('name')?.invalid
                    && (popupForm.get('name')?.dirty || popupForm.get('name')?.touched) ? 'red' : ''}"
                formControlName="name">
-        <input type="number" class="input" placeholder="Ваш номер телефона"
+        <input type="text" class="input" placeholder="Ваш номер телефона"
                [ngStyle]="{'border-color': popupForm.get('phone')?.invalid
                    && (popupForm.get('phone')?.dirty || popupForm.get('phone')?.touched) ? 'red' : ''}"
                formControlName="phone">
+<!--        <p-inputmask mask="+375-99-9999999" formControlName="phone" placeholder="Ваш номер телефона" />-->
         <div class="popup-form-button">
           <button class="button" type="button" [disabled]="popupForm.invalid" (click)="makeAppointment()">Оставить заявку</button>
           <div class="error-input" *ngIf="hasError">Произошла ошибка при отправке формы, попробуйте еще раз.</div>
