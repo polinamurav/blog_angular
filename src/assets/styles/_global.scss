@@ -123,3 +123,23 @@ a.button {
     color: $light-blue-text-color;
   }
 }
+
+.password-container {
+  position: relative;
+  display: inline-block;
+
+  .input {
+    padding-right: 40px;
+  }
+
+  .toggle-password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    fill: #000;
+  }
+}

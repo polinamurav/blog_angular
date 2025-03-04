@@ -26,10 +26,24 @@
           </div>
         </div>
         <div class="auth-input">
-          <input type="password" class="input"
-                 [ngStyle]="{'border-color': signupForm.get('password')?.invalid
+          <div class="password-container">
+            <input [type]="passwordFieldType" type="password" class="input"
+                   [ngStyle]="{'border-color': signupForm.get('password')?.invalid
                  && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched) ? 'red' : '' }"
-                 placeholder="Пароль" formControlName="password">
+                   placeholder="Пароль" formControlName="password">
+            <svg *ngIf="passwordFieldType === 'password'" class="toggle-password-icon" (click)="togglePasswordVisibility()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+              <path d="M32,16c-12.392,0-22.902,7.5-27.594,18C9.098,44.5,19.608,52,32,52s22.902-7.5,27.594-18C54.902,23.5,44.392,16,32,16z
+             M32,44c-6.617,0-12-5.383-12-12s5.383-12,12-12s12,5.383,12,12S38.617,44,32,44z"/>
+              <circle cx="32" cy="32" r="4"/>
+            </svg>
+            <svg *ngIf="passwordFieldType === 'text'" class="toggle-password-icon" (click)="togglePasswordVisibility()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+              <path d="M32,16c-12.392,0-22.902,7.5-27.594,18C9.098,44.5,19.608,52,32,52s22.902-7.5,27.594-18C54.902,23.5,44.392,16,32,16z
+             M32,44c-6.617,0-12-5.383-12-12s5.383-12,12-12s12,5.383,12,12S38.617,44,32,44z"/>
+              <path d="M32,20c-6.617,0-12,5.383-12,12s5.383,12,12,12s12-5.383,12-12S38.617,20,32,20z M32,40c-4.418,0-8-3.582-8-8s3.582-8,8-8
+             s8,3.582,8,8S36.418,40,32,40z"/>
+              <line x1="15" y1="15" x2="49" y2="49" stroke="black" stroke-width="4"/>
+            </svg>
+          </div>
           <div class="invalid-input" *ngIf="signupForm.get('password')?.invalid
                  && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
             Введите не менее 8 символов, хотя бы 1 заглавная буква и 1 цифра

@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 })
 export class SignupComponent implements OnInit {
 
+  passwordFieldType: string = 'password';
   signupForm = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('^([А-ЯЁ][а-яё]*)(\\s[А-ЯЁ][а-яё]*)*$')]],
     email: ['', [Validators.required, Validators.email]],
@@ -64,5 +65,9 @@ export class SignupComponent implements OnInit {
           }
         })
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
