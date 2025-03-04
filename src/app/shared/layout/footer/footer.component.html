@@ -43,7 +43,7 @@
           +7 (499) 343-13-34
         </a>
         <div class="footer-button">
-          <button class="button">Перезвоните мне</button>
+          <button class="button" (click)="openPopUp()">Перезвоните мне</button>
         </div>
       </div>
       <div class="footer-block">
@@ -86,3 +86,74 @@
     <div class="footer-rights">© 2022. Все права защищены</div>
   </div>
 </footer>
+
+<div class="popup" *ngIf="isPopUp">
+  <div class="popup-container">
+    <svg (click)="closePopUp()" class="popup-close" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+			L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+			c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+			L284.286,256.002z"/>
+	</g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+      <g>
+</g>
+</svg>
+    <div class="popup-main" *ngIf="!isSuccess">
+      <div class="popup-text">Закажите бесплатную консультацию!</div>
+      <form class="popup-form" [formGroup]="popupForm">
+        <input type="text" class="input" placeholder="Ваше имя"
+               [ngStyle]="{'border-color': popupForm.get('name')?.invalid
+                   && (popupForm.get('name')?.dirty || popupForm.get('name')?.touched) ? 'red' : ''}"
+               formControlName="name">
+        <input type="number" class="input" placeholder="Ваш номер телефона"
+               [ngStyle]="{'border-color': popupForm.get('phone')?.invalid
+                   && (popupForm.get('phone')?.dirty || popupForm.get('phone')?.touched) ? 'red' : ''}"
+               formControlName="phone">
+        <div class="popup-form-button">
+          <button class="button" type="button" [disabled]="popupForm.invalid" (click)="makeAppointment()">Заказать консультацию</button>
+        </div>
+      </form>
+    </div>
+    <div class="popup-success" *ngIf="isSuccess">
+      <div class="popup-success-text">Спасибо за вашу заявку!</div>
+      <div class="popup-success-description">Мы свяжемся с вами при первой же возможности.</div>
+      <div class="popup-success-button">
+        <button class="button" type="button" (click)="closePopUp()">Окей</button>
+      </div>
+    </div>
+  </div>
+</div>
