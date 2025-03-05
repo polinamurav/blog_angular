@@ -25,9 +25,9 @@ export class DetailComponent implements OnInit {
   serverStaticPath = environment.serverStaticPath;
   isLogged: boolean = false;
   totalCommentsCount: number = 0;
-  isLoading: boolean = false;
   canLoadMoreComments: boolean = true;
   userReactions: ReactionType[] = [];
+  displayedCommentsCount: number = 3;
 
   commentForm = this.fb.group({
     text: ['', [Validators.required]]
@@ -102,11 +102,12 @@ export class DetailComponent implements OnInit {
       this.commentService.addComment(this.commentForm.value.text, this.product.id)
         .subscribe({
           next: (data: DefaultResponseType) => {
-            if (data.error !== undefined) {
+            if (data.error) {
               this._snackBar.open(data.message);
               throw new Error(data.message);
             }
 
+            this._snackBar.open(data.message);
             this.allComments();
             this.commentForm.reset();
           },
@@ -122,16 +123,25 @@ export class DetailComponent implements OnInit {
     }
   }
 
-  allComments() {
+  allComments(loadMore: boolean = false) {
     const params = {
-      offset: this.comments.length,
+      offset: loadMore ? this.displayedCommentsCount : 0,
       article: this.product.id
     };
 
     this.commentService.getComments(params).subscribe({
       next: (data) => {
         if (data && data.comments) {
-          this.comments = [...this.comments, ...data.comments];
+          let newComments = data.comments;
+
+          if (loadMore) {
+            this.comments = [...this.comments, ...newComments];
+          } else {
+            this.comments = [...newComments, ...this.comments];
+            this.comments = this.comments.slice(0, 3); //только первые 3 коммента
+          }
+
+          this.displayedCommentsCount = this.comments.length;
           this.checkIfCanLoadMoreComments();
         }
       },
@@ -140,6 +150,7 @@ export class DetailComponent implements OnInit {
       }
     });
   }
+
 
   checkIfCanLoadMoreComments() {
     this.canLoadMoreComments = this.comments.length < this.totalCommentsCount;
