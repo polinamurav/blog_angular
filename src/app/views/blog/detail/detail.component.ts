@@ -158,19 +158,35 @@ export class DetailComponent implements OnInit {
 
   addReaction(action: string, commentId: string) {
     const existingReactionIndex = this.userReactions.findIndex(r => r.comment === commentId);
+    const commentIndex = this.comments.findIndex(c => c.id === commentId);
 
     if (existingReactionIndex !== -1) {
       if (this.userReactions[existingReactionIndex].action === action) {
         this.userReactions.splice(existingReactionIndex, 1);
-      } else {
-        if (action === 'like' || action === 'dislike') {
-          this.userReactions[existingReactionIndex].action = action;
-        } else {
-          this.userReactions.push({comment: commentId, action});
+        if (action === 'like') {
+          this.comments[commentIndex].likesCount -= 1;
+        } else if (action === 'dislike') {
+          this.comments[commentIndex].dislikesCount -= 1;
         }
+      } else {
+        if (action === 'like') {
+          this.comments[commentIndex].likesCount += 1;
+          this.comments[commentIndex].dislikesCount -= 1;
+        } else if (action === 'dislike') {
+          this.comments[commentIndex].dislikesCount += 1;
+          this.comments[commentIndex].likesCount -= 1;
+        }
+        this.userReactions[existingReactionIndex].action = action;
       }
     } else {
-      this.userReactions.push({comment: commentId, action});
+      // реакции не было раньше
+      this.userReactions.push({ comment: commentId, action });
+
+      if (action === 'like') {
+        this.comments[commentIndex].likesCount += 1;
+      } else if (action === 'dislike') {
+        this.comments[commentIndex].dislikesCount += 1;
+      }
     }
 
     this.commentService.addReaction(action, commentId).subscribe({
@@ -178,13 +194,9 @@ export class DetailComponent implements OnInit {
         if (data.error) {
           this._snackBar.open(data.message);
           throw new Error(data.message);
-        } else {
-          if (action === 'violate') {
-            this._snackBar.open('Жалоба отправлена');
-          } else {
-            this._snackBar.open('Ваш голос учтен!');
-          }
         }
+
+        this._snackBar.open(action === 'violate' ? 'Жалоба отправлена' : 'Ваш голос учтен!');
       },
       error: (error) => {
         this._snackBar.open('Жалоба уже отправлена');
