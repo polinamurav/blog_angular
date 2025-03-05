@@ -1,19 +1,23 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import {catchError, Observable, switchMap, throwError} from "rxjs";
+import {catchError, finalize, Observable, switchMap, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
 import {DefaultResponseType} from "../../../assets/types/default-response.type";
 import {LoginResponseType} from "../../../assets/types/login-response.type";
+import {LoaderService} from "../../shared/services/loader.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService,
+              private loaderService: LoaderService,
               private router: Router) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.loaderService.show();
+
     const tokens = this.authService.getTokens();
     if (tokens && tokens.accessToken) {
       const authReq = req.clone({
@@ -28,10 +32,14 @@ export class AuthInterceptor implements HttpInterceptor {
             }
             return throwError(() => error);
           }),
+          finalize(() => this.loaderService.hide())
         );
     }
 
     return next.handle(req)
+      .pipe(
+        finalize(() => this.loaderService.hide())
+      );
   }
 
   handle401Error(req: HttpRequest<any>, next: HttpHandler) {
