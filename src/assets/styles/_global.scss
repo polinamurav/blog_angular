@@ -55,6 +55,29 @@ a.button {
   }
 }
 
+.p-inputtext {
+  box-sizing: border-box;
+  padding: 17px 20px;
+  border: 2px solid $light-blue-text-color;
+  border-radius: 3px;
+  font-family: "Monsterrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: $dark-blue-text-color;
+  outline: none;
+  width: 422px;
+  height: 53px;
+  margin-bottom: 5px;
+
+  &::placeholder {
+    color: #a8aba7;
+  }
+
+  &:enabled:focus {
+    box-shadow: none;
+  }
+}
+
 .mat-menu-item {
   font-family: "Monsterrat", sans-serif;
   font-weight: 400;
