@@ -12,12 +12,17 @@ import {UserType} from "../../../../assets/types/user.type";
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean = false;
-  user!: UserType;
+  user: UserType;
 
   constructor(private _snackBar: MatSnackBar,
               private authService: AuthService,
               private router: Router) {
     this.isLogged = this.authService.getIsLoggedIn();
+    this.user = {
+      id: '',
+      name: '',
+      email: ''
+    }
   }
 
   ngOnInit(): void {

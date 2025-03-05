@@ -10,9 +10,19 @@ import {ProductType} from "../../../../assets/types/product.type";
 export class ProductCardComponent implements OnInit {
 
   serverStaticPath = environment.serverStaticPath;
-  @Input() product!: ProductType;
+  @Input() product: ProductType;
 
-  constructor() { }
+  constructor() {
+    this.product = {
+      id: '',
+      title: '',
+      description: '',
+      image: '',
+      date: '',
+      category: '',
+      url: '',
+    };
+  }
 
   ngOnInit(): void {
   }

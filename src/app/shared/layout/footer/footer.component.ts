@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {RequestService} from "../../services/request.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {RequestType} from "../../../../assets/types/request.type";
-import {DefaultResponseType} from "../../../../assets/types/default-response.type";
 
 @Component({
   selector: 'app-footer',

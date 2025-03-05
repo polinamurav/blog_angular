@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {ProductType} from "../../../../assets/types/product.type";
 import {ActivatedRoute} from "@angular/router";
@@ -19,8 +19,8 @@ import {ReactionType} from "../../../../assets/types/reaction.type";
 })
 export class DetailComponent implements OnInit {
 
-  product!: ProductType;
-  relatedProducts!: ProductType[];
+  product: ProductType;
+  relatedProducts: ProductType[];
   comments: CommentType[] = [];
   serverStaticPath = environment.serverStaticPath;
   isLogged: boolean = false;
@@ -40,6 +40,26 @@ export class DetailComponent implements OnInit {
               private fb: FormBuilder,
               private _snackBar: MatSnackBar) {
     this.isLogged = this.authService.getIsLoggedIn();
+    this.product = {
+      id: '',
+      title: '',
+      description: '',
+      image: '',
+      date: '',
+      category: '',
+      url: '',
+    };
+    this.relatedProducts = [
+      {
+        id: '',
+        title: '',
+        description: '',
+        image: '',
+        date: '',
+        category: '',
+        url: '',
+      }
+    ];
   }
 
   ngOnInit(): void {
@@ -56,10 +76,12 @@ export class DetailComponent implements OnInit {
             this.totalCommentsCount = +data.commentsCount || 0;
           }
 
-          this.commentService.getReactions(this.product.id)
-            .subscribe((data: ReactionType[]) => {
-              this.userReactions = data;
-            })
+          if (this.isLogged) {
+            this.commentService.getReactions(this.product.id)
+              .subscribe((data: ReactionType[]) => {
+                this.userReactions = data;
+              });
+          }
 
         })
 
@@ -133,7 +155,7 @@ export class DetailComponent implements OnInit {
         if (action === 'like' || action === 'dislike') {
           this.userReactions[existingReactionIndex].action = action;
         } else {
-          this.userReactions.push({ comment: commentId, action });
+          this.userReactions.push({comment: commentId, action});
         }
       }
     } else {
